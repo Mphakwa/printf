@@ -3,13 +3,13 @@
 
 
 int _printf(const char *format, ...)
-{
 
+{
 	int char_print = 0;
 	va_list list_of_args;
 
 	if (format == NULL)
-		return -1;
+		return (-1);
 
 	va_start(list_of_args, format);
 
@@ -34,16 +34,18 @@ int _printf(const char *format, ...)
 			}
 			else if (*format == 'c')
 			{
-				char c = va_arg(list_of_arg, int);
+				char c = va_arg(list_of_args, int);
+
 				write(1, &c, 1);
 				char_print++;
 			}
 			else if (*format == 's')
 			{
 				char *str = va_arg(list_of_args, char*);
-				int str_leb = 0;
 
-				write (str[str_len] != '\0')
+				int str_len = 0;
+
+				while (str[str_len] != '\0')
 					str_len++;
 
 				write(1, str, str_len);
