@@ -5,12 +5,12 @@
  * @format: string
  * Return: char_print
  */
-int _print(const char *format, ...);
+int _print(const char *format, ...)
 {
 	int char_print = 0;
 	va_list list_of_args;
 
-	if (*format == NULL)
+	if (format == NULL)
 		return (-1);
 	va_start(list_of_args, format);
 	while (*format)
@@ -27,7 +27,7 @@ int _print(const char *format, ...);
 				break;
 			if (*format == '%')
 			{
-				write(1, format 1);
+				write(1, format, 1);
 				char_print++;
 			}
 			else if (*format == 'c')
