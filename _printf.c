@@ -1,4 +1,5 @@
 #include "main.h"
+#include <unistd.h>
 
 int _printf(const char *format, ...)
 {
@@ -42,6 +43,6 @@ char_print += str_len;
 format++;
 }
 
-va_end(list_of_args);
+va_end list_of_args;
 return (char_print);
 }
