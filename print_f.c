@@ -1,11 +1,11 @@
 #include "main.h"
 #include <unistd.h>
 /**
- * _print - a function that produces output according to a format
+ * _printf - a function that produces output according to a format
  * @format: string
  * Return: char_print
  */
-int _print(const char *format, ...)
+int _printf(const char *format, ...)
 {
 	int char_print = 0;
 	va_list list_of_args;
