@@ -1,6 +1,12 @@
 #include "main.h"
 #include <unistd.h>
 
+/**
+ * _printf -  a function that produces output according to a format
+ * @format: constant character
+ * Return: char_print
+ */
+
 int _printf(const char *format, ...)
 {
 int char_print = 0;
@@ -37,12 +43,9 @@ int str_len = strlen(str);
 write(1, str, str_len);
 char_print += str_len;
 }
-
 }
-
 format++;
 }
-
 va_end(list_of_args);
 return (char_print);
 }
