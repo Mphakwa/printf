@@ -2,50 +2,45 @@
 #include <unistd.h>
 
 /**
- * _printf -  a function that produces output according to a format
- * @format: constant character
- * Return: char_print
+ * _printf - prints to stout format text
+ * @format: format specifier
+ * Return: number of bytes printed
  */
 
 int _printf(const char *format, ...)
 {
-int char_print = 0;
-va_list list_of_args;
+	unsigned int i;
+	int s_count;
+	int count = 0;
+	va_list list_of_args;
 
-if (format == NULL)
-return (-1);
+	va_start(list_of_args, format);
 
-va_start(list_of_args, format);
+	for (i = 0; format[i] != '\0'; i++)
+	{
+		if (format[i] != '%')
+		{
+			_putchar(format[i]);
+		}
+		else if (format[i + 1] == 'c')
+		{
+			_putchar(va_arg(list_of_args, int));
+			i++;
+		}
+		else if (format[i + 1] == 's')
+		{
+			s_count = putss(va_arg(list_of_args, char *));
+			i++;
+			count += (s_count - 1);
+		}
+		else if (format[i + 1] == '%')
+		{
+			_putchar('%');
 
-while (*format)
-{
-if (*format != '%')
-{
-write(1, format, 1);
-char_print++;
-}
-else
-{
-format++;
-if (*format == '\0')
-break;
+		}
+		count += 1;
+	}
 
-if (*format == '%' || *format == 'c')
-{
-char c = *format == 'c' ? va_arg(list_of_args, int) : '%';
-write(1, &c, 1);
-char_print++;
-}
-else if (*format == 's')
-{
-char *str = va_arg(list_of_args, char*);
-int str_len = strlen(str);
-write(1, str, str_len);
-char_print += str_len;
-}
-}
-format++;
-}
-va_end(list_of_args);
-return (char_print);
+	va_end(list_of_args);
+	return (count);
 }
